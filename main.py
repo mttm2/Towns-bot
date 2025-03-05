@@ -206,7 +206,7 @@ if __name__ == "__main__":
             print("Выбран режим: Дейлик")
 
             browser_positions = record_positions("Наведи курсор на иконку браузера и нажми 'space'")
-            daily_steps = record_positions("Наведи курсор на открытие дейлика и нажми 'space'")
+            daily_steps = record_single_position("Наведи курсор на открытие дейлика и нажми 'space'")
             beaver_position = record_single_position("Наведи курсор на бобра и нажми 'space'")
             gas_payment_position = record_single_position("Наведи курсор на оплату газа и нажми 'space'")
 
