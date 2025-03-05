@@ -53,12 +53,12 @@ def load_data():
         channel_ids = [ch.strip() for ch in data.get("CHANNEL_IDS", "").split(",") if ch.strip()]
 
         if not token or not channel_ids:
-            print("❌ Ошибка: Файл data.txt некорректно заполнен.")
+            print("Ошибка: Файл data.txt некорректно заполнен.")
             return None, None
 
         return token, channel_ids
     except Exception as e:
-        print(f"❌ Ошибка чтения data.txt: {e}")
+        print(f"Ошибка чтения data.txt: {e}")
         return None, None
 
 def clean_message(text):
@@ -84,7 +84,7 @@ def get_messages(channel_id, token, limit=50):
         filtered_messages = [clean_message(msg) for msg in raw_messages if clean_message(msg)]  # Фильтруем
         return filtered_messages
     else:
-        print(f"❌ Ошибка {response.status_code} при получении сообщений из канала {channel_id}.")
+        print(f"Ошибка {response.status_code} при получении сообщений из канала {channel_id}.")
         return []
 
 def save_messages(messages):
@@ -101,16 +101,16 @@ def save_messages(messages):
         with open(MSG_FILE, "a", encoding="utf-8") as file:
             for msg in new_messages:
                 file.write(msg + "\n")
-        print(f"✅ Добавлено {len(new_messages)} новых сообщений в msg.txt")
+        print(f"Добавлено {len(new_messages)} новых сообщений в msg.txt")
     else:
-        print("⚠️ Нет новых сообщений")
+        print("⚠Нет новых сообщений")
 
 if __name__ == "__main__":
     token, channel_ids = load_data()
     if token and channel_ids:
         all_messages = []
         for channel_id in channel_ids:
-            print(f"📥 Получаю сообщения из канала {channel_id}...")
+            print(f"Получаю сообщения из канала {channel_id}...")
             all_messages.extend(get_messages(channel_id, token))
 
         save_messages(all_messages)
