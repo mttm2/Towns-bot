@@ -147,16 +147,21 @@ def perform_daily_task(browser_coords, daily_steps, beaver_position, gas_payment
         print(f"Переключился на браузер: {browser_x}, {browser_y}")
         time.sleep(random.uniform(10, 30))
 
+        # Делаем daily_steps списком, если передана одна координата
+        if not isinstance(daily_steps, list):
+            daily_steps = [daily_steps]
+
         for step_x, step_y in daily_steps:
             pyautogui.click(step_x + random.randint(-5, 5), step_y + random.randint(-5, 5))
             print(f"Выполнил действие: {step_x}, {step_y}")
             time.sleep(random.uniform(2, 6))
 
-        # Выполняем клик по бобру и оплату газа
+        # Выполняем клик по бобру с рандомным смещением
         pyautogui.click(beaver_position[0] + random.randint(-5, 5), beaver_position[1] + random.randint(-5, 5))
         print(f"Клик по бобру: {beaver_position}")
         time.sleep(random.uniform(5, 10))
 
+        # Оплата газа с рандомным смещением
         pyautogui.click(gas_payment_position[0] + random.randint(-5, 5), gas_payment_position[1] + random.randint(-5, 5))
         print(f"Оплата газа: {gas_payment_position}")
         time.sleep(random.uniform(10, 16))
